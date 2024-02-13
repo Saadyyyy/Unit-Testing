@@ -18,12 +18,8 @@ func NewMakananRepository(db *gorm.DB) MakananRepository {
 }
 
 func (ur *MakananRepositoryImpl) Create(makan models.Makanan) (*models.Makanan, error) {
-
-	err := ur.db.Create(&makan)
-
-	if err.Error != nil {
-		return nil, err.Error
+	if err := ur.db.Create(&makan).Error; err != nil {
+		return nil, err
 	}
-
 	return &makan, nil
 }

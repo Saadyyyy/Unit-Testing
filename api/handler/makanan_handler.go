@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/Saadyyyy/Unit-Testing/api/service"
+	"github.com/Saadyyyy/Unit-Testing/models"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,7 +17,8 @@ func NewMakananController(serv service.MakananService, ctx *gin.Context) *Makana
 }
 
 func (uc *MakananController) Create(ctx *gin.Context) {
-	data, err := uc.serv.Create(ctx)
+	makan := models.Makanan{}
+	data, err := uc.serv.Create(makan)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"Massage": err,
