@@ -19,13 +19,3 @@ func (repo *MakanRepositoryMock) Create(makan models.Makanan) (*models.Makanan, 
 	}
 
 }
-
-func NewMakananRepository(t interface {
-	mock.TestingT
-	Cleanup(func())
-}) *MakanRepositoryMock {
-	mock := &MakanRepositoryMock{}
-	mock.Mock.Test(t)
-	t.Cleanup(func() { mock.Mock.AssertExpectations(t) })
-	return mock
-}
